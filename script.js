@@ -62,3 +62,4 @@ for (var i = 0; i < tables.length; i++) {
         this.style.backgroundColor = 'green';
     });
 }
+
