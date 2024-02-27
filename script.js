@@ -34,18 +34,31 @@ function createTables(tableNames) {
             restaurantLayout.appendChild(sectionHeader);
             currentSection = sectionLetter;
         }
-        
-        table.addEventListener('click', changeColor);
-        table.addEventListener('dblclick', changeBackToGreen);
+
+        table.addEventListener('click', function () {
+            cycleColors.call(this);
+        });
 
         restaurantLayout.appendChild(table);
     }
 }
 
-function changeColor() {
-    this.style.backgroundColor = 'red'; // Change the color to red when clicked
+function cycleColors() {
+    var currentColor = this.style.backgroundColor;
+
+    if (!currentColor || currentColor === 'green') {
+        this.style.backgroundColor = 'red';
+    } else if (currentColor === 'red') {
+        this.style.backgroundColor = 'yellow';
+    } else if (currentColor === 'yellow') {
+        this.style.backgroundColor = 'green';
+    }
 }
 
-function changeBackToGreen() {
-    this.style.backgroundColor = 'green'; // Change the color back to green when double-clicked
+// Apply the utility function to all tables
+var tables = document.getElementsByClassName('table');
+for (var i = 0; i < tables.length; i++) {
+    tables[i].addEventListener('dblclick', function () {
+        this.style.backgroundColor = 'green';
+    });
 }
